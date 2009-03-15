@@ -33,6 +33,7 @@ javascript:void((function () {
     var fm=E('form');
     atr(fm,{'action':'#','method':'get','style':'width:100%;padding:.2em .2em .5em .2em;'});
     pn(B(),gb(fm,E('input')));
+    atr(fm.firstChild,{'style':'width:100%;'});
     at(fm,'submit',function(){
         var url=fm.firstChild.value;
         W.d.location=url;

@@ -15,13 +15,13 @@ void((function(){
         s = E('link');
         s.setAttribute('rel', 'stylesheet');
         s.setAttribute('type', 'text/css');
-        s.setAttribute('href', 'http://dotmpe.com/style/source-chart');
+        s.setAttribute('href', 'http://dotmpe.com/style/source-chart.css');
         s.setAttribute('title', 'Document source structure (dotmpe)');
         s.setAttribute('id', id);
         h.appendChild(s);
     }
     else {
-        sdisabled = s.disabled; /* needded? */
+        sdisabled = s.disabled; 
         s.disabled = !sdisabled;
     }
 })())

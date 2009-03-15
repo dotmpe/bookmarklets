@@ -12,7 +12,6 @@ parameters to the delicious bookmark post form, and are only used for new posts.
 Problems
 --------
 Does not function on some sites.
-
   Not this scripts fault. **Quickfix**: turn off browser javascript support, reload the offending page, turn on javascript again and try the bookmarklet.
   Proper fix: poke in source code and annoy webmaster to find out whats happening first.
 
