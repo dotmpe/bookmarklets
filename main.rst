@@ -5,7 +5,7 @@ Some JavaScript bookmarklets created for Gecko browsers (FF,Mozilla,...).
 `minuscul-us <./minuscul-us>`_
    Search for anchors with ID in the document.
 
-`View Document source structure (dotmpe) <./source-chart.mpe>`_
+`source chart <./source-chart.mpe>`_
    View structure of document blocks and inlines.
    Adds a stylesheet to the page you are currently viewing.
 
@@ -20,7 +20,4 @@ Some JavaScript bookmarklets created for Gecko browsers (FF,Mozilla,...).
 
 `web-archive <./web-archive>`_
    Search the Web Archive for the current URL.
-
-`zw <./zw>`_
-   Zigzag the web.
 

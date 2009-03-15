@@ -1,20 +1,21 @@
 source-chart
 ============
-:created: 2008-03-30 
-:subject: web, html, tools, bookmarlets, javascript
-:creator: `Berend van Berkum`_, berend@dotmpe.com
-:license: MIT_
-:Bookmarklet: `source-chart.mpe-bm`_
+:Created: 2008-03-30 
+:Subject: web, html, tools, bookmarlets, javascript
+:Creator: `Berend van Berkum <mailto:berend@dotmpe.com>`_
+:License: MIT_
+:URL: http://dotmpe.com/project/bookmarklet/source-chart
 :Source: Source_
+:Revision: 2
+:Bookmarklet: `source-chart.mpe.2.bm`_
 
 
 View current page using `dotmpe.com/style/source-chart <http://dotmpe.com/style/source-chart>`_.
 
 ----
 
-.. _Source: http://dotmpe.com/project/bookmarklets/minuscul-us.js
+.. _Source: http://dotmpe.com/project/bookmarklet/source-chart.mpe.js
 .. _MIT: http://www.opensource.org/licenses/mit-license
-.. _Berend van Berkum: http://dotmpe.com/
 
-.. include:: ./source-chart.mpe.bm.rst
+.. include:: ./source-chart.mpe.2.bm.rst
 

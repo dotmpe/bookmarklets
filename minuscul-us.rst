@@ -6,7 +6,7 @@ minuscul.us
 :subject: web, html, tools, bookmarklets, javascript
 :creator: `Berend van Berkum`_, berend@dotmpe.com
 :license: MIT_
-:Bookmarklet: `minuscul-us-bm`_
+:Bookmarklet: `minuscul-us.1.bm`_
 :Source:  Source_
 
 A bookmark aid that finds and displays all the anchors in an HTML document. 
@@ -40,9 +40,6 @@ Changelog
 ---------
 v1
     First version, approx 1800 characters.
-
-v2, 2007-08-13
-    Added keyboard eventhandling, now captures up and down arrow keys to traverse the fragments. 2770 characters.
     
 
 ----
@@ -54,4 +51,4 @@ v2, 2007-08-13
 .. _MIT: http://www.opensource.org/licenses/mit-license
 .. _Berend van Berkum: http://dotmpe.com/
 
-.. include:: minuscul-us.bm.rst
+.. include:: minuscul-us.1.bm.rst

@@ -1,85 +1,111 @@
-URL='/project/x-translit/bookmarklet/'
-DIR=/home/berend/htdocs/dist/
-LST='./SOURCE'
+# Bookmarklet/Scriptlet makefile
+#
+# Non recursive [#]_ 
+# .. [#] http://www.xs4all.nl/~evbergen/nonrecursive-make.html
+URL='/project/bookmarklet/'
+#DIR=/home/berend/htdocs/dist/
 
-SRC= $(shell cat $(LST))
+# Global vars (used by Makefile targets)
+SRC     :=
+DEP     :=
+TRGT    :=
+CLN     :=
 
-V= $(SRC:%.js=%.version)
-CHK= $(SRC:%.js=%.md5sum)
-BM= $(SRC:%.js=%.bm.js)
-BM_RST= $(SRC:%.js=%.bm.rst)
-DSCR= $(SRC:%.js=%.rst)
+# Flags
+DU_GEN= --traceback --no-generator --no-footnote-backlinks --date -i utf-8 -o utf-8
+DU_HTML= --no-compact-lists --link-stylesheet --stylesheet=docutils.bm.css --footnote-references=superscript --cloak-email-addresses
 
-#RST = $(shell find ./ -iname "*.rst") 
-XHT= $(DSCR:%.rst=%.xhtml)
-#XHT:= $(RST:%.rst=%.xhtml)
-#XHT:= $(BM_RST:%.rst=%.xhtml)
+# Bin
+bzr         =bzr
+js-bm       =js2bm
+tidy-xhtml  =tidy -q -wrap 0 -asxhtml -utf8 -i
+rst-xhtml   =rst2html $(DU_GEN) $(DU_READ) $(DU_HTML)
+rst-dep     =~/project/scrow/bin/bash/rst-dep.sh
 
-DU_GEN = --traceback --no-generator --no-footnote-backlinks --date -i utf-8 -o utf-8
-DU_HTML = --no-compact-lists --link-stylesheet --stylesheet=/style/default --footnote-references=superscript --cloak-email-addresses 
 
-.PHONY: def clean bm pub dist
+### Bash output strings
+c0=\x1b[0;0m
+# err color, red
+c1=\x1b[31m
+c8=\x1b[1;31m
+# ok color, green
+c2=\x1b[32m
+# running, orange
+c3=\x1b[0;33m
+#  l-blue
+c4=\x1b[1;34m
+#  purple
+c5=\x1b[35m
+# 
+c6=\x1b[36m
+# pale white
+c7=\x1b[0;37m
+# hard white
+c9=\x1b[1;37m
 
-def:
-	@echo "bookmarklet makefile"
-	@echo ""
-	@echo "source-list: $(LST)"
+## Make output strings
+mk_trgt=$(c3)[$(c7)$@$(c3)]$(c0)
+mk_rule=$(c4)<$(c7)$*$(c4)>$(c0) 
+mk_src=$(c4)<$(c7)$<$(c4)>$(c0) 
+mk_srcs=$(c4)<$(c7)$^$(c4)>$(c0) 
+mk_upd=$(c4)<$(c7)$?$(c4)>$(c0)
+
+
+# Default target
+.PHONY: default
+default: build
+
+
+# Include specific rules and set SRC, DEP, TRGT and CLN variables.
+dir         := .
+include     $(dir)/Rules.mk
+# Include more dependency rules for targets.
+include 	$(DEP)
+
+# Default targets
+.PHONY: help build clean dep clean-dep dist all
+
+help:
+	@echo -e "$(mk_trgt) $(c9)Scriptlets Makefile$(c0)"
+	@echo "Usage: make [help|build|clean|dep|clean-dep|dist|all|<distname>|<packname>]"
+	@echo "Where distname is the name of a javascript filename with embedded version number."
 	@echo "dist-dir: $(DIR)"
 	@echo "project-url: $(URL)"
 	@echo ""
-	@echo "targets:"
+	@echo "targets:$(TRGT)"
 	@echo "	bm: make all bookmarklets in $(LST)"
-	@echo "	dist: make all and cp to $(DIR)"
+	@echo "	dist: make all and cp to dist-dir"
+
+stat: status    
+status:
+	@echo -e "$(mk_trgt) $(c9)Unpublished scripts$(c0):"
+	@JS_SRC=`echo $(SRC) |sed 's/\ /\n/g'| grep -e '\.[0-9]*\.js'`; \
+			bzr stat $$JS_SRC;
+	@echo -e "$(mk_trgt) At branch revision $(c9)`bzr revno`$(c0)."
+
+
+build: $(TRGT) 
+	@echo -e "$(mk_trgt) $(c9)Done.$(c0)"
 
 clean:
-	-rm $(BM_RST) $(BM) $(CHK) $(XHT)
+	@echo -e "$(mk_trgt) $(c9)cleaning$(c0) $(c4)<$(c7)$(CLN)$(c4)>$(c0)"
+	@-rm $(CLN);\
+	 if test $$? -gt 0; then echo ""; fi; # put xtra line if err-msgs
 
-bm: $(BM_RST)
+dep: $(DEP)
+	@echo -e "$(mk_trgt) $(c9)Done.$(c0)"
 
-pub: bm $(CHK) $(V)
+clean-dep:
+	@echo -e "$(mk_trgt) $(c9)cleaning$(c0) $(c4)<$(c7)$(DEP)$(c4)>$(c0)"
+	@-rm $(DEP);\
+	 if test $$? -gt 0; then echo ""; fi; # put xtra line if err-msgs
 
-dist: pub
-	@(for f in $(V);do \
-	 	name=$${f%.version};\
-	 	version=`cat $$f|tr -d '\n'`;\
-		rename "s/^$$name/$$name.$$version/" $$name.{bm.js,md5sum};\
-		mv $$name.$$version.{bm.js,md5sum} $(DIR);\
-		echo "$(URL)$$name" > $(DIR)$$name.$$version.url;\
-		echo "* $$name.$$version published";\
-	done);
+pack: $(DIST)
+	@echo -e "$(mk_trgt) $(c9)Done.$(c0)"
 
-# Targets
-%.version: %.bm.js
-	@echo `cat $@| xargs expr 1 + ` > $@;
-	@echo "* $^ version: "`cat $@`
+dist: pack 
+	@echo -e "$(mk_trgt) $(c9)Done.$(c0)"
 
-%.md5sum: %.bm.js
-	@md5sum $< > $@
-	@echo "* $^ md5sum> $@"
+all: build dist
 
-%.bm.js: %.js
-	@js2bm $< > $@
-	@echo "* $^ js2bm> $@"
-	@echo "  chars/bytes: "`wc -c -m < $@`
-
-%.bm.rst: %.bm.js
-	@echo -n ".. _"$*"-bm: " > $@
-	@cat $< >> $@
-	@echo "* $^ -> $@"
-	
-# Extra target for bookmarklet reference dependency
-%.xhtml: %.rst %.bm.rst 
-	@rst2html $(DU_GEN) $(DU_READ) $(DU_HTML) $< $@
-	@mv $@ $@.tmp1
-	@sed -e 's/<p>\[\([0-9]*\)\.\]<\/p>/<a id="page-\1" class="pagebreak"><\/a>/g' $@.tmp1 > $@.tmp2
-	@sed -e 's/\[\([0-9]*\)\.\]/<a id="page-\1" class="pagebreak"><\/a>/g' $@.tmp2 > $@
-	@rm $@.tmp1 $@.tmp2
-	@-tidy -q -m -wrap 0 -asxhtml -utf8 -i $@
-	@echo "* $^ -> $@"
-
-# Dependencies
-%.rst: %.bm.rst
-
-.PHONY: bm
-doc: $(RST)
-bm: $(BM) 
+# :vim:set noexpandtab:
