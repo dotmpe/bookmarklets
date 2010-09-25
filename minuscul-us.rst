@@ -47,8 +47,8 @@ v1
 .. [1] http://www.squarefree.com/bookmarklets/browsers.html
 .. _Epiphany: http://www.gnome.org/projects/epiphany/
 
-.. _Source: http://dotmpe.com/project/bookmarklets/minuscul-us.js
+.. _Source: http://dotmpe.com/project/bookmarklets/minuscul-us.latest.js
 .. _MIT: http://www.opensource.org/licenses/mit-license
 .. _Berend van Berkum: http://dotmpe.com/
 
-.. include:: minuscul-us.1.bm.rst
+.. include:: .build/minuscul-us.bm.rst

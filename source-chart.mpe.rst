@@ -14,8 +14,8 @@ View current page using `dotmpe.com/style/source-chart <http://dotmpe.com/style/
 
 ----
 
-.. _Source: http://dotmpe.com/project/bookmarklet/source-chart.mpe.js
+.. _Source: http://dotmpe.com/project/bookmarklet/source-chart.mpe.latest.js
 .. _MIT: http://www.opensource.org/licenses/mit-license
 
-.. include:: ./source-chart.mpe.2.bm.rst
+.. include:: .build/source-chart.mpe.bm.rst
 

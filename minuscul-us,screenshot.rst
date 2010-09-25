@@ -2,8 +2,8 @@
  minuscul.us Screenshot
 ========================
 
-.. figure:: minuscul-us-screenshot.png
-   :target: ./minuscul-us-screenshot.png
+.. figure:: minuscul-us,screenshot.png
+   :target: ./minuscul-us,screenshot.png
 
    minuscul.us running in Gnome's web browser `Epiphany`_ .
 
