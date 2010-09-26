@@ -24,8 +24,8 @@ Bugs
 Overview
 --------
 
-.. figure:: minuscul-us.screenshot.png
-   :target: ./minuscul-us.screenshot?width=auto
+.. figure:: minuscul-us,screenshot.png
+   :target: ./minuscul-us,screenshot?width=auto
 
    minuscul.us running in Gnome's web browser `Epiphany`_ .
 
