@@ -4,6 +4,7 @@ D_$(SP)             := $d
 d                   := $(DIR)
 
 MK                  += $d/Rules.mk
+BUILD_$d            := $d/.build
 
 
 ## Local Variables
@@ -15,18 +16,18 @@ SCRIPTLETS_$d       := bugmenot-popup same-domain-policy\
 #mpe-toggle_width
 
 # local vars/target sets
-BM_V_$d             := $(SCRIPTLETS_$d:%=$(BUILD)/%.versions)
+BM_V_$d             := $(SCRIPTLETS_$d:%=$(BUILD_$d)/%.versions)
 BM_JS_SRC_$d        := $(wildcard $(SCRIPTLETS_$d:%=$d/%.[0-9]*.js))
-BM_REF_$d           := $(BM_JS_SRC_$d:$d/%.js=$(BUILD)/%.urlref)
-BM_RST_$d           := $(BM_JS_SRC_$d:$d/%.js=$(BUILD)/%.bm.rst) 
+BM_REF_$d           := $(BM_JS_SRC_$d:$d/%.js=$(BUILD_$d)/%.urlref)
+BM_RST_$d           := $(BM_JS_SRC_$d:$d/%.js=$(BUILD_$d)/%.bm.rst) 
 BM_RST_SRC_$d       := $(SCRIPTLETS_$d:%=$d/%.rst)
 RST_SRC_$d          := $d/main.rst $(BM_RST_SRC_$d)
-XHT_$d              := $(BUILD)/main.xhtml \
-                       $(BM_RST_SRC_$d:$d/%.rst=$(BUILD)/%.xhtml) 
+XHT_$d              := $(BUILD_$d)/main.xhtml \
+                       $(BM_RST_SRC_$d:$d/%.rst=$(BUILD_$d)/%.xhtml) 
 # FIXME: arguh, somehow sets of entire build again.. :
 # SYMLINK_$d          := $(SCRIPTLETS_$d:%=$d/%.latest.js)
 DMK_$d              += $(XHT_$d:%.xhtml=%.include.mk) \
-                       $(SCRIPTLETS_$d:%=$(BUILD)/%.bm.mk)
+                       $(SCRIPTLETS_$d:%=$(BUILD_$d)/%.bm.mk)
 # recollections:
 TRGT_$d             += $(BM_RST_$d) $(BM_REF_$d) $(XHT_$d) $(SYMLINK_$d) \
 					   $d/.htaccess
@@ -54,7 +55,7 @@ DMK                 += $(DMK_$d)
 
 $d/%.latest.js: $d/%.[0-9]*.js $d/.build/%.versions
 	@# XXX: rule gets always executed? $(ll) file_target "$@" "Symlinking because" "$^"
-	@LATEST=`tail -1 $(BUILD)/$*.versions`;\
+	@LATEST=`tail -1 $(BUILD_$d)/$*.versions`;\
 		cd $(@D) ;\
 		if test -L "$*.latest.js"; then \
 			CURRENT=`readlink $@`; \
@@ -69,29 +70,19 @@ $d/%.latest.js: $d/%.[0-9]*.js $d/.build/%.versions
 			ln -s $*.$$LATEST.js $*.latest.js; fi;
 
 # See build/%.bm.mk
-#$(BUILD)/%.[0-9]*.urlref: $d/%.[0-9]*.js
-define build-bm
-	@$(ll) file_target "$@" "Building BM from" "$^"
-    @$(ee) "javascript:void((function(){" > $<.tmp
-    @cat $< >> $<.tmp
-    @$(ee) "})())" >> $<.tmp
-	@$(js2bm) $<.tmp > $@
-	@rm $<.tmp
-	@$(ll) header2 Bytes "`wc -c < $@`"
-	@$(ll) file_ok $@ Done
-endef
+#$(BUILD_$d)/%.[0-9]*.urlref: $d/%.[0-9]*.js
+#define build-bm
+#	@$(ee) "javascript:void((function(){" > $@.tmp
+#	@cat $^ >> $@.tmp
+#	@$(ee) "})())" >> $@.tmp
+#	@$(js2bm) $@.tmp > $@
+#	@rm $@.tmp
+#endef
 
 # See build/%.bm.mk
-#$(BUILD)/%.bm.[0-9]*.rst: $(BUILD)/%.[0-9]*.urlref
-define build-bm-rst
-	@$(ll) file_target $@ "because" "$^"
-	@$(ee) -n ".. _"$*".bm: " > $@
-	@cat $< >> $@
-	@$(ee) >> $@
-	@$(ll) file_ok $@ Done
-endef
+#$(BUILD_$d)/%.bm.[0-9]*.rst: $(BUILD_$d)/%.[0-9]*.urlref
 
-#$(BUILD)/%.version: $d/%.[0-9]*.js
+#$(BUILD_$d)/%.version: $d/%.[0-9]*.js
 #	@$(ll) file_target $@ "Writing latest version for" "$?"
 #	@ls $(<D)/$*.*.js | while read f; do \
 #        v=`$(ee) "$$f"|sed 's/^.*\.\([0-9]\+\)\.js$$/\1/'`;  \
@@ -103,7 +94,7 @@ endef
 #	@$(ll) file_ok $@ Done
 
 #	$d/Rules.mk
-$(BUILD)/%.versions: $d/%.[0-9]*.js
+$(BUILD_$d)/%.versions: $d/%.[0-9]*.js
 	@$(ll) file_target $@ "Updating because" "$?"
 	@for f in $^; \
 		do v=`$(ee) "$$f"|sed 's/^.*\.\([0-9]\+\)\.js$$/\1/'`; \
@@ -113,7 +104,7 @@ $(BUILD)/%.versions: $d/%.[0-9]*.js
 	@$(ll) file_ok $@ Done
 
 #	$d/Rules.mk
-$(BUILD)/%.bm.mk: $(BUILD)/%.versions 
+$(BUILD_$d)/%.bm.mk: $(BUILD_$d)/%.versions 
 	@$(ll) file_target $@ "Updating Makefile dependencies because" "$?"
 	@if test -e $@; then rm $@; touch $@; fi
 	@VERSIONS='';\
@@ -133,24 +124,21 @@ $(BUILD)/%.bm.mk: $(BUILD)/%.versions
 	 $(ee) "\t@cat \$$^ > \$$@" >> $@; \
 	 $(ee) "\t@\$$(ll) file_ok \$$@ Done" >> $@; 
 
-$(BUILD)/%.include.mk: $d/%.rst 
-	@$(ll) file_target $@ "Updating rSt dependencies because" "$?"
-	@if test -e $@; then rm $@; fi
-	@touch $@
-	@for f in $$($(call rst-dep,$<,-)); do\
-		$(ee) "$(BUILD)/$*.xhtml: $$f" >> $@; \
-	done; 
+$(BUILD_$d)/%.include.mk: $d/%.rst 
+	@$(mk-rst-include-deps)
 
-$(BUILD)/%.xhtml: $d/%.rst
-	@$(ll) file_target $@ "Building from" "$<"
+$(BUILD_$d)/%.xhtml: $d/%.rst
+	@#$(ll) file_target $@ "Building from" "$<"
+	@$(ll) file_target "$@" "Building because" "$?"
 	@$(rst-xhtml) $< $@.tmp
 	@-$(tidy-xhtml) $@.tmp > $@; \
 	 if test $$? -gt 0; then $(ee) ""; fi; # put xtra line if err-msgs
 	@rm $@.tmp
 	@$(ll) file_ok $@ Done
 
-$d/.htaccess: $(XHT_$d)
-	@$(ll) file_target "$@" "Building from" "$^"
+$d/.htaccess: $(XHT_$d) 
+	@#$(ll) file_target "$@" "Building from" "$^"
+	@$(ll) file_target "$@" "Building because" "$?"
 	@if test -e $@; then rm $@; touch $@; fi
 	@echo "RewriteEngine on" >> $@
 	@for f in $^; do \
@@ -160,8 +148,7 @@ $d/.htaccess: $(XHT_$d)
 		$(ee) "RewriteCond %{REQUEST_FILENAME}.rst -f" >> $@; \
 		$(ee) "RewriteCond %{REQUEST_URI} ^.*$$R$$" >> $@; \
 		$(ee) "#RewriteCond .build/$$R.xhtml -f" >> $@; \
-		$(ee) "RewriteCond %{DOCUMENT_ROOT}/bookmarklet/.build/$$R.xhtml -f" >> $@; \
-		$(ee) "RewriteRule (.+) /bookmarklet/.build/$$R.xhtml [L]" >> $@;\
+		$(ee) "RewriteRule (.+) .build/$$R.xhtml [L]" >> $@;\
 		$(ee) >> $@; done
 	@$(ll) file_ok $@ Done
 	

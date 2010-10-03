@@ -6,24 +6,20 @@ URL='/project/bookmarklet/'
 MK_ROOT := ~/project/mkdoc/
 MK_SHARE := $(MK_ROOT)usr/share/mkdoc/
 
-
-# Bin
-bzr         =bzr
-tidy-xhtml  =tidy -q -wrap 0 -asxhtml -utf8 -i
-rst-xhtml   =rst2html $(DU_GEN) $(DU_READ) $(DU_HTML)
-rst-dep     =~/project/scrow/bin/bash/rst-dep.sh
-#js2bm                 = php ../../../tools/soffa.compress_js.php 
-#rst2xhtml             = ../../../tools/rst2html.sh 
-
-
-DIR                 := .
-ROOT                := $(realpath .)
-BUILD               := $(DIR)/.build
-
 # Provide shared make vars and rules
 include             $(MK_SHARE)Core/Main.mk
 include             $(MK_SHARE)docutils/Main.mk
 include             $(MK_SHARE)bookmarklet/Main.mk
+
+# Bin
+bzr         =bzr
+tidy-xhtml  =tidy -q -wrap 0 -asxhtml -utf8 -i
+#js2bm                 = php ../../../tools/soffa.compress_js.php 
+#rst2xhtml             = ../../../tools/rst2html.sh 
+
+DIR                 := .
+ROOT                := $(realpath .)
+BUILD               := $(DIR)/.build
 
 # Include specific rules and set SRC, DEP, TRGT and CLN variables.
 include             $(DIR)/Rules.mk
