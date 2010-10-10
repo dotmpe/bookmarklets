@@ -3,5 +3,5 @@
 
 'Interactive' JavaScript interpreter.
 
-.. include:: .build/ijs.1.bm.rst
+.. include:: /@MK_BUILDijs.1.bm.rst
 

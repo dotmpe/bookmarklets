@@ -25,4 +25,4 @@ Does not function on some sites.
 .. [1] 'post page to popup with type-ahead' 
       (http://del.icio.us/help/morebuttons)
 .. _dlcs-post.latest.js: ./dlcs-post.latest.js
-.. include:: .build/dlcs-post.bm.rst
+.. include:: /@MK_BUILDdlcs-post.bm.rst

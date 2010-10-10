@@ -1,31 +1,27 @@
 # Bookmarklet/Scriptlet makefile
-#
-URL='/project/bookmarklet/'
-#DIR=/home/berend/htdocs/dist/
 
-MK_ROOT := ~/project/mkdoc/
-MK_SHARE := $(MK_ROOT)usr/share/mkdoc/
+URL                 = '/project/bookmarklet/'
+#DIR                = /home/berend/htdocs/dist/
+
+MK_ROOT            := ~/project/mkdoc/
+MK_SHARE           := $(MK_ROOT)usr/share/mkdoc/
 
 # Provide shared make vars and rules
-include             $(MK_SHARE)Core/Main.mk
-include             $(MK_SHARE)docutils/Main.mk
-include             $(MK_SHARE)bookmarklet/Main.mk
+include               $(MK_SHARE)Core/Main.mk
+include               $(MK_SHARE)docutils/Main.mk
+include               $(MK_SHARE)bookmarklet/Main.mk
 
-# Bin
-bzr         =bzr
-tidy-xhtml  =tidy -q -wrap 0 -asxhtml -utf8 -i
-#js2bm                 = php ../../../tools/soffa.compress_js.php 
-#rst2xhtml             = ../../../tools/rst2html.sh 
-
-DIR                 := .
-ROOT                := $(realpath .)
-BUILD               := $(DIR)/.build
+BUILD              := .build/
+DIR                := .
 
 # Include specific rules and set SRC, DEP, TRGT and CLN variables.
-include             $(DIR)/Rules.mk
+include               $(DIR)/Rules.mk
 
 # Now set some standard targets
-include             $(MK_SHARE)Core/Rules.default.mk
+include               $(MK_SHARE)Core/Rules.default.mk \
+	                  $(MK_SHARE)docutils/Rules.default.mk \
+	                  $(MK_SHARE)bookmarklet/Rules.default.mk
+
 
 # Default targets
 #.PHONY: help build clean dep clean-dep dist all

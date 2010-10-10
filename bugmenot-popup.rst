@@ -8,4 +8,5 @@ site you're viewing.
 
 
 .. _bugmenot-popup.latest.js: bugmenot-popup.latest.js
-.. include:: .build/bugmenot-popup.bm.rst
+.. include:: @MK_BUILDbugmenot-popup.bm.rst
+
