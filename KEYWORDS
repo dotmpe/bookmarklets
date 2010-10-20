@@ -1,0 +1,6 @@
+# This file is updated by the local Rules.mk 
+dotmpe.project.bookmarklet:package	dotmpe.project.bookmarklet
+dotmpe.project.bookmarklet:revision	7
+dotmpe.project.bookmarklet:timestamp	1286714557
+MK_BUILD	/home/berend/project/bookmarklet/.build/./
+
