@@ -1,26 +1,11 @@
 # Bookmarklet/Scriptlet makefile
 
-URL                 = '/project/bookmarklet/'
-#DIR                = /home/berend/htdocs/dist/
+MK_DIR             := ~/project/mkdoc/
+MK_SHARE           := $(MK_DIR)usr/share/mkdoc/
 
-MK_ROOT            := ~/project/mkdoc/
-MK_SHARE           := $(MK_ROOT)usr/share/mkdoc/
+include               $(MK_DIR)Makefile
 
-# Provide shared make vars and rules
-include               $(MK_SHARE)Core/Main.mk
-include               $(MK_SHARE)docutils/Main.mk
-include               $(MK_SHARE)bookmarklet/Main.mk
 
-BUILD              := .build/
-DIR                := .
-
-# Include specific rules and set SRC, DEP, TRGT and CLN variables.
-include               $(DIR)/Rules.mk
-
-# Now set some standard targets
-include               $(MK_SHARE)Core/Rules.default.mk \
-	                  $(MK_SHARE)docutils/Rules.default.mk \
-	                  $(MK_SHARE)bookmarklet/Rules.default.mk
 
 
 # Default targets

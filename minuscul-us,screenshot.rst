@@ -8,10 +8,6 @@
    minuscul.us running in Gnome's web browser `Epiphany`_ .
 
 
-.. header::
-
-   .. include:: <dotmpe/atoms/layout_switch.rst>
-   
 .. footer::
 
    `minuscul.us`_

@@ -16,4 +16,4 @@ Text
 Blah
 
 .. _outline.latest.js: ./outline.latest.js
-.. include:: /@MK_BUILDoutline.bm.rst
+.. include:: @MK_BUILDoutline.bm.rst

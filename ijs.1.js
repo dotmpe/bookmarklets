@@ -1,4 +1,4 @@
-void((function(){
+//void((function(){
 /*  IJs - 'interactive' javascript
 
   ijs, a simple javascript console in javascriptlet/bookmarklet form.
@@ -108,4 +108,4 @@ void((function(){
         body=G('body')[0];
         put(body,ijs);
         window.ijs=ijs};
-})())
+//})())

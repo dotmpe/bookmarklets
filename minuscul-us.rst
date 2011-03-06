@@ -51,4 +51,4 @@ v1
 .. _MIT: http://www.opensource.org/licenses/mit-license
 .. _Berend van Berkum: http://dotmpe.com/
 
-.. include:: /@MK_BUILDminuscul-us.bm.rst
+.. .. include:: @MK_BUILDminuscul-us.bm.rst

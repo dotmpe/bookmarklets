@@ -3,7 +3,7 @@
  * Generates outlines from HTML documents.
  *
  */
-javascript:void((function(){
+//javascript:void((function(){
 
 	E=function(s) {return document.getElementsByTagName(s);};
 	C=function(s) {return document.createElement(s);};
@@ -52,4 +52,4 @@ javascript:void((function(){
 	var hdrs = ['h1','h2','h3','h4','h5','h6'];
 	reapFromDOM (body, hdrs, box, 0);
 
-})())
+//})())

@@ -8,8 +8,6 @@
  * 3. To v=5/deliciousuiv5, 
 
  */
-void((
-	function () {
 
 /*globals*/
 W=window;
@@ -112,7 +110,8 @@ tp=function(n)/* tree-path( for-node ) : Enum<Int>
 		t.unshift(ga(p.childNodes).indexOf(n));
 		n=p;p=p.parentNode}
 	return t};
-m=function()/* generate-element( tag, *attr )( content, *values ) */{
+m=function()/* generate-element( tag, *attr )( content, *values ) */
+{
 	var ats=gf(tStr,arguments);
 	var t=ats.shift();
 	return function _l(){
@@ -176,9 +175,7 @@ at(w,'load',function(){
 function openPostForm(u){
         f=function(){
             if(!window.open(u+'&noui=1&jump=doclose','deliciousuiv5',opts))
-                location.href=u+'jump=yes'};
+                location.href=u+'jump=yes';};
         if(/Firefox/.test(navigator.userAgent)){setTimeout(f,0)}
         else{f()}
-        }
-}
-)())
+};

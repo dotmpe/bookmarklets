@@ -1,6 +1,7 @@
 dlcs Post Bookmarklet
 =====================
 :source: `dlcs-post.latest.js`_
+:bookmarklet: `dlcs-post.1.bm`_
 :bookmarklet: `dlcs-post.3.bm`_
  
 A simple bookmarklet to save an URL to del.icio.us
@@ -25,4 +26,4 @@ Does not function on some sites.
 .. [1] 'post page to popup with type-ahead' 
       (http://del.icio.us/help/morebuttons)
 .. _dlcs-post.latest.js: ./dlcs-post.latest.js
-.. include:: /@MK_BUILDdlcs-post.bm.rst
+.. include:: @MK_BUILDdlcs-post.bm.rst

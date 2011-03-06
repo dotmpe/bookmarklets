@@ -71,3 +71,15 @@ RewriteCond %{REQUEST_URI} ^.*outline$
 #RewriteCond .build/outline.xhtml -f
 RewriteRule (.+) .build/outline.xhtml [L]
 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.rst -f
+RewriteCond %{REQUEST_URI} ^.*google-detect-language$
+#RewriteCond .build/google-detect-language.xhtml -f
+RewriteRule (.+) .build/google-detect-language.xhtml [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.rst -f
+RewriteCond %{REQUEST_URI} ^.*google-translate$
+#RewriteCond .build/google-translate.xhtml -f
+RewriteRule (.+) .build/google-translate.xhtml [L]
+

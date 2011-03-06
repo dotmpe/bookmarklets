@@ -1,18 +1,15 @@
-## Dirstack
-SP                  := $(SP).x
-D_$(SP)             := $d
-d                   := $(DIR)
+include                $(MK_SHARE)Core/Main.dirstack.mk
 
-MK                  += $d/Rules.mk
-BUILD_$d            := $(BUILD)$d/
-
+MK                  += $/Rules.mk
+BUILD_$d            := $/.build/
 
 ## Local Variables
 
 SCRIPTLETS_$d       := bugmenot-popup same-domain-policy \
                        dlcs-post ijs minuscul-us popup \
                        source-chart.mpe toggle-style rscript \
-                       web-archive outline 
+                       web-archive outline \
+                       google-detect-language google-translate
 #                       mpe-toggle_width 
 
 KWDS_$d             := $d/KEYWORDS
@@ -25,22 +22,24 @@ PACK_TIME_$d        := $(shell date -u +%s)
 # local vars/target sets
 #BM_V_$d             := $(SCRIPTLETS_$d:%=$(BUILD_$d)%.versions)
 BM_RST_SRC_$d       := $(SCRIPTLETS_$d:%=$d/%.rst)
-RST_SRC_$d          := $d/main.rst $(BM_RST_SRC_$d)
+RST_SRC_$d          := $/main.rst $(BM_RST_SRC_$d)
 XHT_$d              := $(BUILD_$d)main.xhtml \
-                       $(BM_RST_SRC_$d:$d/%.rst=$(BUILD_$d)%.xhtml) 
+                       $(BM_RST_SRC_$d:$/%.rst=$(BUILD_$d)%.xhtml) 
 BM_JS_SRC_$d        := $(wildcard $(SCRIPTLETS_$d:%=$d/%.[0-9]*.js))
-BM_REF_$d           := $(BM_JS_SRC_$d:$d/%.js=$(BUILD_$d)%.bm.uriref)
-BM_RST_$d           := $(BM_JS_SRC_$d:$d/%.js=$(BUILD_$d)%.bm.rst) 
+BM_REF_$d           := $(BM_JS_SRC_$d:$/%.js=$(BUILD_$d)%.bm.uriref)
+BM_RST_$d           := $(BM_JS_SRC_$d:$/%.js=$(BUILD_$d)%.bm.rst) 
 # FIXME: arguh, somehow sets of entire build again.. :
 # SYMLINK_$d          := $(SCRIPTLETS_$d:%=$d/%.latest.js)
-#DMK_$d              += $(XHT_$d:%.xhtml=%.include.mk) 
+
+# FIXME: not sure if all deps are working, test edit of *.js and *.rst
+DMK_$d              += $(RST_SRC_$d:$/%.rst=$(BUILD_$d)%.include.mk) 
 #DMK_$d              += $(BUILD_$d)Rules.bm.mk
 #DMK_$d              += $(SCRIPTLETS_$d:%=$(BUILD_$d)%.bm.mk)
 # recollections:
 TRGT_$d             += \
+				$(XHT_$d) $(SYMLINK_$d) \
 				$(SCRIPTLETS_$d:%=$(BUILD_$d)%.bm.rst) \
-				$(XHT_$d) $(SYMLINK_$d) 
-#				$d/.htaccess 
+				$d/.htaccess 
 
 
 ## Set to globals
@@ -58,8 +57,6 @@ DMK                 += $(DMK_$d)
 
 #$(BUILD)%.xhtml: %.rst $(BUILD)%.bm.rst
 
-#$(BUILD)%.include.mk: $d/KEYWORDS
-
 $(DMK_$d): DIR := $d
 $(DMK_$d): $(KWDS_$d) $d/Rules.mk
 
@@ -68,6 +65,8 @@ $(BM_V_$d): DIR := $d
 
 $(XHT_$d): DIR := $d
 #$(XHT_$d): $d/Rules.mk
+#$(BUILD)$d/%.xhtml: $(BUILD)$d/%.bm.rst
+
 
 $(KWDS_$d): DIR := $d
 $(KWDS_$d):  $d/Rules.mk
@@ -77,13 +76,13 @@ $(KWDS_$d):  $d/Rules.mk
 	"$(PACK_$(DIR)):package\t$(PACK_$(DIR))\n"\
 	"$(PACK_$(DIR)):revision\t$(PACK_REV_$(DIR))\n"\
 	"$(PACK_$(DIR)):timestamp\t$(PACK_TIME_$(DIR))\n"\
-	"MK_BUILD\t$(ROOT)/$(BUILD)$(<D)/\n"\
+	"MK_BUILD\t$(BUILD_$(DIR))\n"\
 		> $@
 	@$(ll) file_OK $@
 
 
 $(BM_V_$d): DIR := $d
-$(BUILD_$d)%.versions: $d/%.[0-9]*.js
+$(BUILD_$d)%.versions: $/%.[0-9]*.js
 	@$(ll) file_target $@ "Updating because" "$?"
 	@$(reset-target)
 	@for f in $(<D)/$*.[0-9]*.js; do \
@@ -97,15 +96,18 @@ $(BUILD_$d)%.versions: $d/%.[0-9]*.js
 $(DMK_$d): DIR := $d
 
 $(BUILD_$d)%.bm.rst: $(BUILD_$d)%.[0-9]*.bm.rst
-	cat $< > $@
+	@$(ll) file_target "$@" because "$?"
+	@cat $(wildcard $^) > $@
+	@$(ll) file_ok "$@" "<-" "$^"
 
 
-$(BUILD_$d)Rules.bm.mk: $(BM_V_$d)
-	@$(reset-target)
-	for V in $$(cat $(@D)/*.versions | sort -u); do\
-		echo $(BUILD)$(DIR)/%.$$V.bm.uriref: $(DIR)/%.$$V.js >> $@;\
-		echo %.$$V.bm.rst: %.$$V.bm.uriref >> $@;\
-		done;
+#$(BUILD_$d)Rules.bm.mk: $(BM_V_$d)
+#	@$(ll) file_target "$@" because "$?"
+#	@$(reset-target)
+#	@for V in $$(cat $(@D)/*.versions | sort -u); do\
+#		echo $(BUILD)$(DIR)/%.$$V.bm.uriref: $(DIR)/%.$$V.js >> $@;\
+#		echo %.$$V.bm.rst: %.$$V.bm.uriref >> $@;\
+#		done;
 
 %.bm.mk: %.versions 
 	@$(ll) file_target $@ "Updating Makefile dependencies because" "$?"
@@ -159,7 +161,7 @@ $d/%.latest.js: $d/%.[0-9]*.js $d/.build/%.versions
 	@$(ll) file_target $@ "Symlinking $* because" "$?"
 	@# XXX: rule gets always executed? $(ll) file_target "$@" "Symlinking because" "$^"
 	@echo $(BUILD_$(DIR))
-	@LATEST=`tail -1 $(BUILD_$d)$*.versions`;\
+	@LATEST=`tail -1 $(BUILD_$(DIR))$*.versions`;\
 		cd $(@D) ;\
 		if test -L "$*.latest.js"; then \
 			CURRENT=`readlink $@`; \
@@ -174,7 +176,23 @@ $d/%.latest.js: $d/%.[0-9]*.js $d/.build/%.versions
 			ln -s $*.$$LATEST.js $*.latest.js; fi;
 
 
+$(BUILD_$d)%.include.mk: $/%.rst 
+	@$(ll) file_target $@ "Creating XHTML dependencies for $* from" "$<"
+	@$(reset-target)
+	@$(mk-rst-include-deps)
+	@$(ll) file_ok $@ "Done, run because" "$?"
 
-d 				:= $(D_$(SP))
-SP				:= $(basename $(SP))
-# :vim:noet:
+$(BUILD_$d)%.bm.uriref: $/%.js
+	@$(build-bm)
+	@$(ll) file_ok $@ "Done, run because" "$?"
+
+
+
+## Debug
+#$(info BM_JS_SRC_$d, $(BM_JS_SRC_$d))
+#$(info BM_REF_$d, $(BM_REF_$d))
+#$(info BM_RST_$d, $(BM_RST_$d))
+
+#      ------------ -- 
+include                $(MK_SHARE)Core/Main.dirstack-pop.mk
+# vim:noet:

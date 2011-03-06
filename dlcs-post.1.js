@@ -20,8 +20,6 @@
  *     (http://del.icio.us/help/morebuttons)
  */
 
-javascript:void((function(){
-
 	/* Location */
 	l = document.location.href;
 	
@@ -52,4 +50,3 @@ javascript:void((function(){
 		
 	open(url,'delicious','toolbar=no,width=700,height=400');
 
-})())
