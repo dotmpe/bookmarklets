@@ -1,85 +1,85 @@
 RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME}.rst -f
-RewriteCond %{REQUEST_URI} ^.*main$
-#RewriteCond .build/main.xhtml -f
-RewriteRule (.+) .build/main.xhtml [L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME}.rst -f
-RewriteCond %{REQUEST_URI} ^.*bugmenot-popup$
-#RewriteCond .build/bugmenot-popup.xhtml -f
-RewriteRule (.+) .build/bugmenot-popup.xhtml [L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME}.rst -f
-RewriteCond %{REQUEST_URI} ^.*same-domain-policy$
-#RewriteCond .build/same-domain-policy.xhtml -f
-RewriteRule (.+) .build/same-domain-policy.xhtml [L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME}.rst -f
-RewriteCond %{REQUEST_URI} ^.*dlcs-post$
-#RewriteCond .build/dlcs-post.xhtml -f
-RewriteRule (.+) .build/dlcs-post.xhtml [L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME}.rst -f
-RewriteCond %{REQUEST_URI} ^.*ijs$
-#RewriteCond .build/ijs.xhtml -f
-RewriteRule (.+) .build/ijs.xhtml [L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME}.rst -f
-RewriteCond %{REQUEST_URI} ^.*minuscul-us$
-#RewriteCond .build/minuscul-us.xhtml -f
-RewriteRule (.+) .build/minuscul-us.xhtml [L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME}.rst -f
-RewriteCond %{REQUEST_URI} ^.*popup$
-#RewriteCond .build/popup.xhtml -f
-RewriteRule (.+) .build/popup.xhtml [L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME}.rst -f
-RewriteCond %{REQUEST_URI} ^.*source-chart.mpe$
-#RewriteCond .build/source-chart.mpe.xhtml -f
-RewriteRule (.+) .build/source-chart.mpe.xhtml [L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME}.rst -f
-RewriteCond %{REQUEST_URI} ^.*toggle-style$
-#RewriteCond .build/toggle-style.xhtml -f
-RewriteRule (.+) .build/toggle-style.xhtml [L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME}.rst -f
-RewriteCond %{REQUEST_URI} ^.*rscript$
-#RewriteCond .build/rscript.xhtml -f
-RewriteRule (.+) .build/rscript.xhtml [L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME}.rst -f
-RewriteCond %{REQUEST_URI} ^.*web-archive$
-#RewriteCond .build/web-archive.xhtml -f
-RewriteRule (.+) .build/web-archive.xhtml [L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME}.rst -f
-RewriteCond %{REQUEST_URI} ^.*outline$
-#RewriteCond .build/outline.xhtml -f
-RewriteRule (.+) .build/outline.xhtml [L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME}.rst -f
-RewriteCond %{REQUEST_URI} ^.*google-detect-language$
-#RewriteCond .build/google-detect-language.xhtml -f
-RewriteRule (.+) .build/google-detect-language.xhtml [L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME}.rst -f
-RewriteCond %{REQUEST_URI} ^.*google-translate$
-#RewriteCond .build/google-translate.xhtml -f
-RewriteRule (.+) .build/google-translate.xhtml [L]
-
+-e RewriteCond %{REQUEST_FILENAME} !-f
+-e RewriteCond %{REQUEST_FILENAME}.rst -f
+-e RewriteCond %{REQUEST_URI} ^.*main$
+-e #RewriteCond .build/main.xhtml -f
+-e RewriteRule (.+) .build/main.xhtml [L]
+-e
+-e RewriteCond %{REQUEST_FILENAME} !-f
+-e RewriteCond %{REQUEST_FILENAME}.rst -f
+-e RewriteCond %{REQUEST_URI} ^.*bugmenot-popup$
+-e #RewriteCond .build/bugmenot-popup.xhtml -f
+-e RewriteRule (.+) .build/bugmenot-popup.xhtml [L]
+-e
+-e RewriteCond %{REQUEST_FILENAME} !-f
+-e RewriteCond %{REQUEST_FILENAME}.rst -f
+-e RewriteCond %{REQUEST_URI} ^.*same-domain-policy$
+-e #RewriteCond .build/same-domain-policy.xhtml -f
+-e RewriteRule (.+) .build/same-domain-policy.xhtml [L]
+-e
+-e RewriteCond %{REQUEST_FILENAME} !-f
+-e RewriteCond %{REQUEST_FILENAME}.rst -f
+-e RewriteCond %{REQUEST_URI} ^.*dlcs-post$
+-e #RewriteCond .build/dlcs-post.xhtml -f
+-e RewriteRule (.+) .build/dlcs-post.xhtml [L]
+-e
+-e RewriteCond %{REQUEST_FILENAME} !-f
+-e RewriteCond %{REQUEST_FILENAME}.rst -f
+-e RewriteCond %{REQUEST_URI} ^.*ijs$
+-e #RewriteCond .build/ijs.xhtml -f
+-e RewriteRule (.+) .build/ijs.xhtml [L]
+-e
+-e RewriteCond %{REQUEST_FILENAME} !-f
+-e RewriteCond %{REQUEST_FILENAME}.rst -f
+-e RewriteCond %{REQUEST_URI} ^.*minuscul-us$
+-e #RewriteCond .build/minuscul-us.xhtml -f
+-e RewriteRule (.+) .build/minuscul-us.xhtml [L]
+-e
+-e RewriteCond %{REQUEST_FILENAME} !-f
+-e RewriteCond %{REQUEST_FILENAME}.rst -f
+-e RewriteCond %{REQUEST_URI} ^.*popup$
+-e #RewriteCond .build/popup.xhtml -f
+-e RewriteRule (.+) .build/popup.xhtml [L]
+-e
+-e RewriteCond %{REQUEST_FILENAME} !-f
+-e RewriteCond %{REQUEST_FILENAME}.rst -f
+-e RewriteCond %{REQUEST_URI} ^.*source-chart.mpe$
+-e #RewriteCond .build/source-chart.mpe.xhtml -f
+-e RewriteRule (.+) .build/source-chart.mpe.xhtml [L]
+-e
+-e RewriteCond %{REQUEST_FILENAME} !-f
+-e RewriteCond %{REQUEST_FILENAME}.rst -f
+-e RewriteCond %{REQUEST_URI} ^.*toggle-style$
+-e #RewriteCond .build/toggle-style.xhtml -f
+-e RewriteRule (.+) .build/toggle-style.xhtml [L]
+-e
+-e RewriteCond %{REQUEST_FILENAME} !-f
+-e RewriteCond %{REQUEST_FILENAME}.rst -f
+-e RewriteCond %{REQUEST_URI} ^.*rscript$
+-e #RewriteCond .build/rscript.xhtml -f
+-e RewriteRule (.+) .build/rscript.xhtml [L]
+-e
+-e RewriteCond %{REQUEST_FILENAME} !-f
+-e RewriteCond %{REQUEST_FILENAME}.rst -f
+-e RewriteCond %{REQUEST_URI} ^.*web-archive$
+-e #RewriteCond .build/web-archive.xhtml -f
+-e RewriteRule (.+) .build/web-archive.xhtml [L]
+-e
+-e RewriteCond %{REQUEST_FILENAME} !-f
+-e RewriteCond %{REQUEST_FILENAME}.rst -f
+-e RewriteCond %{REQUEST_URI} ^.*outline$
+-e #RewriteCond .build/outline.xhtml -f
+-e RewriteRule (.+) .build/outline.xhtml [L]
+-e
+-e RewriteCond %{REQUEST_FILENAME} !-f
+-e RewriteCond %{REQUEST_FILENAME}.rst -f
+-e RewriteCond %{REQUEST_URI} ^.*google-detect-language$
+-e #RewriteCond .build/google-detect-language.xhtml -f
+-e RewriteRule (.+) .build/google-detect-language.xhtml [L]
+-e
+-e RewriteCond %{REQUEST_FILENAME} !-f
+-e RewriteCond %{REQUEST_FILENAME}.rst -f
+-e RewriteCond %{REQUEST_URI} ^.*google-translate$
+-e #RewriteCond .build/google-translate.xhtml -f
+-e RewriteRule (.+) .build/google-translate.xhtml [L]
+-e

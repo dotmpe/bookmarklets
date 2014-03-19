@@ -13,6 +13,7 @@ SCRIPTLETS_$d       := bugmenot-popup same-domain-policy \
 #                       mpe-toggle_width 
 
 KWDS_$d             := $d/KEYWORDS
+DEP_$d              := $d/KEYWORDS
 
 PACK_$d             := dotmpe.project.bookmarklet
 #PACK_HREF           := http://dotmpe.com/project/bookmarklet
@@ -72,7 +73,7 @@ $(KWDS_$d): DIR := $d
 $(KWDS_$d):  $d/Rules.mk
 	@$(ll) file_target "$@" "Building tagfile because" "$?"
 	@$(reset-target)
-	@$(ee) "# This file is updated by the local Rules.mk \n"\
+	@echo -e "# This file is updated by the local Rules.mk \n"\
 	"$(PACK_$(DIR)):package\t$(PACK_$(DIR))\n"\
 	"$(PACK_$(DIR)):revision\t$(PACK_REV_$(DIR))\n"\
 	"$(PACK_$(DIR)):timestamp\t$(PACK_TIME_$(DIR))\n"\
@@ -82,10 +83,11 @@ $(KWDS_$d):  $d/Rules.mk
 
 
 $(BM_V_$d): DIR := $d
-$(BUILD_$d)%.versions: $/%.[0-9]*.js
+# FIXME not in Darwin bash? $(BUILD_$d)%.versions: $/%.[0-9]*.js
+$(BUILD_$d)%.versions: $/%.*.js
 	@$(ll) file_target $@ "Updating because" "$?"
 	@$(reset-target)
-	@for f in $(<D)/$*.[0-9]*.js; do \
+	@for f in $(<D)/$*.*.js; do \
 		v=`echo "$$f"|sed 's/^.*\.\([0-9]\+\)\.js$$/\1/'`; \
 		echo $$v >> $@.tmp; done;
 	@cat $@.tmp | sort -u > $@
@@ -95,9 +97,11 @@ $(BUILD_$d)%.versions: $/%.[0-9]*.js
 
 $(DMK_$d): DIR := $d
 
-$(BUILD_$d)%.bm.rst: $(BUILD_$d)%.[0-9]*.bm.rst
+# FIXME not in Darwin bash? $(BUILD_$d)%.bm.rst: $(BUILD_$d)%.[0-9]*.bm.rst
+$(BUILD_$d)%.bm.rst: $(BUILD_$d)%.*.bm.rst
 	@$(ll) file_target "$@" because "$?"
-	@cat $(wildcard $^) > $@
+	@[ -n "$(wildcard $^)" ] && { echo $(wildcard $^) > $@; } || \
+		{ echo "Missing sources $<"; exit 2; }
 	@$(ll) file_ok "$@" "<-" "$^"
 
 
@@ -118,23 +122,23 @@ $(BUILD_$d)%.bm.rst: $(BUILD_$d)%.[0-9]*.bm.rst
 	 NAME="$${SRC##$$BUILDPATH}";\
 	 SRCPATH=$(DIR)/;\
 	 for v in `cat $$BUILDPATH/$$NAME.versions`; do \
-	   $(ee) ".SECONDARY: $$BUILDPATH$$NAME.$$v.bm.uriref\n" >> $@; \
-	   $(ee) ".SECONDARY: $$BUILDPATH$$NAME.$$v.bm.rst\n" >> $@; \
+	   echo -e ".SECONDARY: $$BUILDPATH$$NAME.$$v.bm.uriref\n" >> $@; \
+	   echo -e ".SECONDARY: $$BUILDPATH$$NAME.$$v.bm.rst\n" >> $@; \
 	   VERSIONS="$$VERSIONS $$BUILDPATH$$NAME.$$v.bm.rst"; \
 	 done; \
-	 $(ee) "$$BUILDPATH$$NAME.bm.rst: $$VERSIONS" >> $@;\
-	 $(ee) "\t@\$$(ll) file_target \$$@ \"Because\" \"\$$?\"" >> $@; \
-	 $(ee) "\t@\$$(ll) file_target \$$@ \"Concatenating from\" \"\$$^\"" >> $@; \
-	 $(ee) "\t@cat \$$^ > \$$@" >> $@; \
-	 $(ee) "\t@\$$(ll) file_ok \$$@ Done" >> $@
-	 @#$(ee) "$$BUILDPATH$$NAME.$$v.bm.uriref: $$SRCPATH$$NAME.$$v.js\n" >> $@; \
-	 #$(ee) "$$BUILDPATH$$NAME.$$v.bm.rst: $$BUILDPATH$$NAME.$$v.bm.uriref\n" >> $@; \
-	 #  $(ee) "$$BUILDPATH$$NAME.$$v.bm.uriref: $$SRCPATH$$NAME.$$v.js\n" >> $@; \
-	 # $(ee) "$$BUILDPATH$$NAME.$$v.bm.rst: $$BUILDPATH$$NAME.$$v.bm.uriref\n" >> $@; 
-	@#$(ee) "\t@\$$(build-bm)\n" >> $@; \
-	 #$(ee) "$$BUILDPATH%.bm.rst: $$BUILDPATH%.uriref" >> $@; \
-	 #	$(ee) "\t@\$$(build-bm-rst)\n" >> $@; \
-	 #$(ee) "$$BUILDPATH$$NAME.versions: $$SRCPATH$$NAME.[0-9]*.js\n" >> $@;
+	 echo -e "$$BUILDPATH$$NAME.bm.rst: $$VERSIONS" >> $@;\
+	 echo -e "\t@\$$(ll) file_target \$$@ \"Because\" \"\$$?\"" >> $@; \
+	 echo -e "\t@\$$(ll) file_target \$$@ \"Concatenating from\" \"\$$^\"" >> $@; \
+	 echo -e "\t@cat \$$^ > \$$@" >> $@; \
+	 echo -e "\t@\$$(ll) file_ok \$$@ Done" >> $@
+	 @#echo -e "$$BUILDPATH$$NAME.$$v.bm.uriref: $$SRCPATH$$NAME.$$v.js\n" >> $@; \
+	 #echo -e "$$BUILDPATH$$NAME.$$v.bm.rst: $$BUILDPATH$$NAME.$$v.bm.uriref\n" >> $@; \
+	 #  echo -e "$$BUILDPATH$$NAME.$$v.bm.uriref: $$SRCPATH$$NAME.$$v.js\n" >> $@; \
+	 # echo -e "$$BUILDPATH$$NAME.$$v.bm.rst: $$BUILDPATH$$NAME.$$v.bm.uriref\n" >> $@; 
+	@#echo -e "\t@\$$(build-bm)\n" >> $@; \
+	 #echo -e "$$BUILDPATH%.bm.rst: $$BUILDPATH%.uriref" >> $@; \
+	 #	echo -e "\t@\$$(build-bm-rst)\n" >> $@; \
+	 #echo -e "$$BUILDPATH$$NAME.versions: $$SRCPATH$$NAME.[0-9]*.js\n" >> $@;
 	@$(ll) file_ok $@ Done
 
 
@@ -157,7 +161,7 @@ $d/.htaccess: $(XHT_$d)
 	@$(ll) file_ok $@ Done
 	
 
-$d/%.latest.js: $d/%.[0-9]*.js $d/.build/%.versions
+$d/%.latest.js: $d/%.*.js $d/.build/%.versions
 	@$(ll) file_target $@ "Symlinking $* because" "$?"
 	@# XXX: rule gets always executed? $(ll) file_target "$@" "Symlinking because" "$^"
 	@echo $(BUILD_$(DIR))
