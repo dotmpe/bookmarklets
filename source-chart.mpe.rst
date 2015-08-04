@@ -10,7 +10,14 @@ source-chart
 :Bookmarklet: `source-chart.mpe.2.bm`_
 
 
-View current page using `dotmpe.com/style/source-chart <http://dotmpe.com/style/source-chart>`_.
+View current page using `source-chart.css </source-chart.css>`_.
+
+Raw listing
+--------------
+
+.. include:: source-chart.mpe.2.js
+  :literal:
+
 
 ----
 
@@ -18,4 +25,5 @@ View current page using `dotmpe.com/style/source-chart <http://dotmpe.com/style/
 .. _MIT: http://www.opensource.org/licenses/mit-license
 
 .. .. include:: @MK_BUILDsource-chart.mpe.bm.rst
+.. include:: .build/source-chart.mpe.bm.rst
 

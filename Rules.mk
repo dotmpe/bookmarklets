@@ -9,15 +9,16 @@ SCRIPTLETS_$d       := bugmenot-popup same-domain-policy \
                        dlcs-post ijs minuscul-us popup \
                        source-chart.mpe toggle-style rscript \
                        web-archive outline \
-                       google-detect-language google-translate
-#                       mpe-toggle_width 
+                       google-detect-language google-translate \
+                       mpe-toggle_width
 
 KWDS_$d             := $d/KEYWORDS
 DEP_$d              := $d/KEYWORDS
 
 PACK_$d             := dotmpe.project.bookmarklet
 #PACK_HREF           := http://dotmpe.com/project/bookmarklet
-PACK_REV_$d         := $(shell bzr revno 2> /dev/null)
+#PACK_REV_$d         := $(shell bzr revno 2> /dev/null)
+PACK_REV_$d         := $(shell git show . | grep '^commit'|sed 's/^commit //' | sed 's/^\([a-f0-9]\{9\}\).*$$/\1../')
 PACK_TIME_$d        := $(shell date -u +%s)
 
 # local vars/target sets
@@ -68,17 +69,16 @@ $(XHT_$d): DIR := $d
 #$(XHT_$d): $d/Rules.mk
 #$(BUILD)$d/%.xhtml: $(BUILD)$d/%.bm.rst
 
+echo := $(shell which echo)
 
 $(KWDS_$d): DIR := $d
 $(KWDS_$d):  $d/Rules.mk
 	@$(ll) file_target "$@" "Building tagfile because" "$?"
 	@$(reset-target)
-	@echo -e "# This file is updated by the local Rules.mk \n"\
-	"$(PACK_$(DIR)):package\t$(PACK_$(DIR))\n"\
-	"$(PACK_$(DIR)):revision\t$(PACK_REV_$(DIR))\n"\
-	"$(PACK_$(DIR)):timestamp\t$(PACK_TIME_$(DIR))\n"\
-	"MK_BUILD\t$(BUILD_$(DIR))\n"\
-		> $@
+	@echo '$(PACK_$(DIR)):package	$(PACK_$(DIR))' > $@
+	@echo '$(PACK_$(DIR)):revision	$(PACK_REV_$(DIR))' >> $@
+	@echo '$(PACK_$(DIR)):timestamp	$(PACK_TIME_$(DIR))' >> $@
+	@echo 'MK_BUILD	$(BUILD_$(DIR))' >> $@
 	@$(ll) file_OK $@
 
 
@@ -100,7 +100,7 @@ $(DMK_$d): DIR := $d
 # FIXME not in Darwin bash? $(BUILD_$d)%.bm.rst: $(BUILD_$d)%.[0-9]*.bm.rst
 $(BUILD_$d)%.bm.rst: $(BUILD_$d)%.*.bm.rst
 	@$(ll) file_target "$@" because "$?"
-	@[ -n "$(wildcard $^)" ] && { echo $(wildcard $^) > $@; } || \
+	@[ -n "$(wildcard $^)" ] && { cat $(wildcard $^) > $@; } || \
 		{ echo "Missing sources $<"; exit 2; }
 	@$(ll) file_ok "$@" "<-" "$^"
 

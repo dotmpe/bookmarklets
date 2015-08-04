@@ -10,6 +10,7 @@ Google Detect Language
 Popup.
 
 .. _google-detect-language.latest.js: google-detect-language.latest.js
-.. include:: @MK_BUILDgoogle-detect-language.bm.rst
+.. FIXME @MK_BUILD/google-detect-language.bm.rst
+.. include:: .build/google-detect-language.bm.rst
 
 

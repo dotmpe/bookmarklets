@@ -1,0 +1,44 @@
+#!/usr/bin/env sitefile
+sitefile: 0.0.3-dev
+routes:
+    '': 'redir:main'
+    main: 'rst2html:main'
+    'minuscul-us': 'rst2html:minuscul-us'
+    'source-chart': 'rst2html:source-chart.mpe'
+    'dlcs-post': 'rst2html:dlcs-post'
+    'toggle-style': 'rst2html:toggle-style'
+    'bugnmenot-bopup': 'rst2html:bugnmenot-bopup'
+    'web-archive': 'rst2html:web-archive'
+
+    'google-detect-language': 'rst2html:google-detect-language'
+    'google-translate': 'rst2html:google-translate'
+    'ijs': 'rst2html:ijs'
+
+    'mpe-toggle_width': 'rst2html:mpe-toggle_width'
+    'outline': 'rst2html:outline'
+    'popup': 'rst2html:popup'
+    'rscript': 'rst2html:rscript'
+    'same-domain-policy': 'rst2html:same-domain-policy'
+    'source-chart.mpe': 'rst2html:source-chart.mpe'
+    'toggle-style': 'rst2html:toggle-style'
+    'web-archive': 'rst2html:web-archive'
+
+    'minuscul-us,screenshot': 'rst2html:minuscul-us,screenshot'
+
+    'minuscul-us,screenshot.png': 'static:minuscul-us,screenshot.png'
+    'minuscul-us.1.js': 'static:minuscul-us.1.js'
+
+    'source-chart.css': 'static:source-chart.css'
+
+
+
+#_name1: 'static:*.{js,png}'
+
+# TODO
+#    $name: 'du:**.rst'
+
+defs:
+  stylesheets:
+  - 'docutils.bm.css'
+
+

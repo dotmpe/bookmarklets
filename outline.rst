@@ -15,5 +15,15 @@ Text
 ---------------
 Blah
 
+
+Raw listing
+--------------
+
+.. include:: outline.1.js
+  :literal:
+
+---
+
+
 .. _outline.latest.js: ./outline.latest.js
-.. include:: @MK_BUILDoutline.bm.rst
+.. include:: .build/outline.bm.rst

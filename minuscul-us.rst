@@ -10,7 +10,7 @@ minuscul.us
 :Source:  Source_
 
 A bookmark aid that finds and displays all the anchors in an HTML document. 
-This so you can easily find the URL for a specific fragment of the page. Not
+This so to easily find the URL for a specific fragment of the page. Not
 all pages provide the needed anchor ID's or names, but it works nicely for 
 most text-oriented pages, fora and other sites that use comments, papers 
 and eg. Wikipedia. 
@@ -40,15 +40,16 @@ Changelog
 ---------
 v1
     First version, approx 1800 characters.
-    
+
 
 ----
 
 .. [1] http://www.squarefree.com/bookmarklets/browsers.html
 .. _Epiphany: http://www.gnome.org/projects/epiphany/
 
-.. _Source: http://dotmpe.com/project/bookmarklets/minuscul-us.latest.js
+.. _Source: minuscul-us.1.js
 .. _MIT: http://www.opensource.org/licenses/mit-license
 .. _Berend van Berkum: http://dotmpe.com/
 
-.. .. include:: @MK_BUILDminuscul-us.bm.rst
+.. include:: .build/minuscul-us.bm.rst
+

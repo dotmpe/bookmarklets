@@ -11,3 +11,4 @@ Lookup the currently displayed document in the Internet Archive's `Wayback Machi
 .. _WayBack Machine: http://www.archive.org/web/web.php
 .. _web-archive.latest.js: ./web-archive.latest.js
 .. .. include:: @MK_BUILDweb-archive.bm.rst
+.. include:: .build/web-archive.bm.rst

@@ -10,5 +10,5 @@ It is a mainstream Web security policy to deny access to off-domain paths.
 
 .. _Source: same-domain-policy.2.js
 
-.. include:: @MK_BUILDsame-domain-policy.bm.rst
+.. include:: .build/same-domain-policy.bm.rst
 

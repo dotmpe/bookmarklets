@@ -14,5 +14,6 @@ XXX: does not detect language of source or choose preferred output language.
 .. _Berend van Berkum: http://dotmpe.com/
 
 .. _google-translate.latest.js: google-translate.latest.js
-.. include:: @MK_BUILDgoogle-translate.bm.rst
+.. FIXME: @MK_BUILDgoogle-translate.bm.rst
+.. include:: .build/google-translate.bm.rst
 

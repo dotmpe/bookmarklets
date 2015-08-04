@@ -21,3 +21,16 @@ Some JavaScript bookmarklets created for Gecko browsers (FF,Mozilla,...).
 `web-archive <./web-archive>`_
    Search the Web Archive for the current URL.
 
+---
+
+
+- `google-detect-language.rst <google-detect-language>`_
+- `google-translate.rst <google-translate>`_
+- `ijs.rst <ijs>`_
+- `outline.rst <outline>`_
+- `popup.rst <popup>`_
+- `rscript.rst <rscript>`_
+- `same-domain-policy.rst <same-domain-policy>`_
+
+.. - `mpe-toggle_width.rst <mpe-toggle_width>`_
+
