@@ -1,4 +1,4 @@
-Toggle Stylesheets 
+Toggle Stylesheets
 ===================
 
 :Source: `toggle-style.latest.js`_
@@ -11,4 +11,4 @@ Toggle disabled attribute of all stylesheets.
 
 .. _toggle-style.latest.js: toggle-style.latest.js
 .. .. include:: @MK_BUILDtoggle-style.bm.rst
-.. include:: .build/toggle-style.bm.rst
+.. include:: .build/toggle-style.1.bm.rst

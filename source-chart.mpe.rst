@@ -1,6 +1,6 @@
 source-chart
 ============
-:Created: 2008-03-30 
+:Created: 2008-03-30
 :Subject: web, html, tools, bookmarlets, javascript
 :Creator: `Berend van Berkum <mailto:berend@dotmpe.com>`_
 :License: MIT_
@@ -25,5 +25,5 @@ Raw listing
 .. _MIT: http://www.opensource.org/licenses/mit-license
 
 .. .. include:: @MK_BUILDsource-chart.mpe.bm.rst
-.. include:: .build/source-chart.mpe.bm.rst
+.. include:: .build/source-chart.mpe.2.bm.rst
 

@@ -26,4 +26,4 @@ Raw listing
 
 
 .. _outline.latest.js: ./outline.latest.js
-.. include:: .build/outline.bm.rst
+.. include:: .build/outline.1.bm.rst
