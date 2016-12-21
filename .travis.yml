@@ -3,7 +3,6 @@ language:
 
 install:
   - ./install-dependencies.sh
-  - rm Makefile && ln -s ~/.local/share/mkdoc/Mkdoc-full.mk Makefile
 
 before_script:
   - "export PATH=$PATH:$PREFIX/bin"
