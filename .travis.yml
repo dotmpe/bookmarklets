@@ -23,6 +23,7 @@ env:
     - Build_Deps_Default_Paths=1
   matrix:
     #- ENV= CS=dark PREFIX=.
-    - ENV= CS=dark PREFIX=$HOME/.local PERL5LIB=/home/travis/perl5/perlbrew/perls/5.8/lib/5.8.8/x86_64-linux:/home/travis/perl5/perlbrew/perls/5.8/lib/5.8.8:/home/travis/perl5/perlbrew/perls/5.8/lib/site_perl/5.8.8/x86_64-linux:/home/travis/perl5/perlbrew/perls/5.8/lib/site_perl/5.8.8:/home/travis/perl5/perlbrew/perls/5.8/lib/site_perl
+    - ENV= CS=dark PREFIX=$HOME/.local
+    #PERL5LIB=/home/travis/perl5/perlbrew/perls/5.8/lib/5.8.8/x86_64-linux:/home/travis/perl5/perlbrew/perls/5.8/lib/5.8.8:/home/travis/perl5/perlbrew/perls/5.8/lib/site_perl/5.8.8/x86_64-linux:/home/travis/perl5/perlbrew/perls/5.8/lib/site_perl/5.8.8:/home/travis/perl5/perlbrew/perls/5.8/lib/site_perl
     #- ENV=production CS=dark PREFIX=/usr/local
 
