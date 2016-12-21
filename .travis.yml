@@ -1,10 +1,10 @@
 
-language:
+language: perl
 
 install:
   - ./install-dependencies.sh
-  - cpan -h
-  - cpan install URI::Escape
+  - cpanm -h
+  - cpanm --install URI::Escape
 
 before_script:
   - "export PATH=$PATH:$PREFIX/bin"
