@@ -1,6 +1,9 @@
 
 language: perl
 
+perl:
+  - "5.14"
+
 install:
   - ./install-dependencies.sh
   - cpanm -h
