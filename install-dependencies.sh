@@ -86,7 +86,7 @@ main_entry()
       PATH=$PATH:$PREFIX/bin bats --version
     ;; esac
 
-  case "$1" in -|mkdoc)
+  case "$1" in all|mkdoc)
       install_mkdoc || return $?
     ;; esac
 
@@ -94,6 +94,7 @@ main_entry()
 }
 
 test "$(basename $0)" = "install-dependencies.sh" && {
+  test -n "$1" || set -- 'all'
   while test -n "$1"
   do
     main_entry "$1" || exit $?
