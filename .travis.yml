@@ -3,8 +3,8 @@ language:
 
 install:
   - ./install-dependencies.sh
-  - cpanm --help
-  - cpanm --install URI::Escape
+  - cpan -h
+  - cpan install URI::Escape
 
 before_script:
   - "export PATH=$PATH:$PREFIX/bin"
