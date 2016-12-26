@@ -22,17 +22,22 @@ before_script: []
 
 script: make
 
-branches:
-  not:
-    - master
-
 env:
   global:
+    - CS=dark
     - DEP_PREFIX=$HOME/.local
     - PATH=$PATH:$DEP_PREFIX/bin:$PREFIX/bin
     - Build_Deps_Default_Paths=1
   matrix:
-    #- ENV= CS=dark PREFIX=.
-    - ENV= CS=dark PREFIX=
-    #- ENV=production CS=dark PREFIX=/usr/local
+    - ENV= PREFIX=
+    #- ENV=production PREFIX=/usr/local
+
+branches:
+  not:
+    - master
+
+notifications:
+  email:
+    on_success: never
+
 
