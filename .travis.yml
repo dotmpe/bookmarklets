@@ -4,13 +4,21 @@ language: perl
 perl:
   - "5.8"
 
+addons:
+  apt:
+    packages:
+      - tree
+      - realpath
+      - uuid-runtime
+      - moreutils
+      - tidy
+
 install:
-  - ./install-dependencies.sh
+  - PREFIX=$DEP_PREFIX ./install-dependencies.sh all
   - cpanm -h
   - cpanm --install URI::Escape
 
-before_script:
-  - "export PATH=$PATH:$PREFIX/bin"
+before_script: []
 
 script: make
 
@@ -20,9 +28,11 @@ branches:
 
 env:
   global:
+    - DEP_PREFIX=$HOME/.local
+    - PATH=$PATH:$DEP_PREFIX/bin:$PREFIX/bin
     - Build_Deps_Default_Paths=1
   matrix:
     #- ENV= CS=dark PREFIX=.
-    - ENV= CS=dark PREFIX=$HOME/.local
+    - ENV= CS=dark PREFIX=
     #- ENV=production CS=dark PREFIX=/usr/local
 
