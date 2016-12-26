@@ -20,7 +20,7 @@ test -z "$Build_Deps_Default_Paths" || {
 }
 
 test -n "$sudo" || sudo=
-test -z "$sudo" || pref="sudo $pref"
+test -z "$sudo" && pref="$sudo " || pref="sudo $pref"
 
 
 test -n "$SRC_PREFIX" || {
@@ -33,8 +33,8 @@ test -n "$PREFIX" || {
   exit 1
 }
 
-test -d $SRC_PREFIX || ${sudo} mkdir -vp $SRC_PREFIX
-test -d $PREFIX || ${sudo} mkdir -vp $PREFIX
+test -d $SRC_PREFIX || ${pref} mkdir -vp $SRC_PREFIX
+test -d $PREFIX || ${pref} mkdir -vp $PREFIX
 
 
 install_bats()
