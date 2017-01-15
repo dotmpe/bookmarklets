@@ -1,6 +1,9 @@
 
 # Intro
 Private repo made public, once upon a time..
+Nice small project with specific focus, to try some project management scripting
+on. Testing, packaging, publishing.
+
 
 # Roadmap
 ## 0.1
@@ -15,9 +18,33 @@ Private repo made public, once upon a time..
 
 - Std. Package/Travis/GIT setup but nothing automatic but build and testing.
 
-- TODO: review Sitefile setup, would want to test at Travis.
-
 - Maybe setup git pages for project, ie. serve with Jekyll.
+
+- TODO: review Sitefile setup, would want to test at Travis.
+  ```
+  Sitefile.yaml37:# TODO
+  ```
+
+- Key build artefact is currently KEYWORDS. See about some setup for
+  Jekyll/Sitefile etc.
+  ```
+  bugmenot-popup.rst11:.. FIXME Sitefile does not support @MK_BUILDbugmenot-popup.bm.rst
+  dlcs-post.rst29:.. FIXME @MK_BUILDdlcs-post.bm.rst
+  google-detect-language.rst13:.. FIXME @MK_BUILD/google-detect-language.bm.rst
+  google-translate.rst12:XXX: does not detect language of source or choose preferred output language.
+  google-translate.rst17:.. FIXME: @MK_BUILDgoogle-translate.bm.rst
+  ijs.rst6:.. FIXME: @MK_BUILDijs.1.bm.rst
+  ```
+
+- TODO: Review Rules.mk
+  ```
+  Rules.mk33:# FIXME: arguh, somehow sets of entire build again.. :
+  Rules.mk36:# FIXME: not sure if all deps are working, test edit of *.js and *.rst
+  Rules.mk86:# FIXME not in Darwin bash? $(BUILD_$d)%.versions: $/%.[0-9]*.js
+  Rules.mk100:# FIXME not in Darwin bash? $(BUILD_$d)%.bm.rst: $(BUILD_$d)%.[0-9]*.bm.rst
+
+  Rules.mk166:	@# XXX: rule gets always executed? $(ll) file_target "$@" "Symlinking because" "$^"
+  ```
 
 
 ## Known Issues

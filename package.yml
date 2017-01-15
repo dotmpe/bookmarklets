@@ -3,11 +3,15 @@
 - type: application/x-project-mpe
   main: bookmarklet
   name: bookmarklet
+  id: bookmarklet
+
   version: 0.1.0-dev # bookmarklet
-  environments: [ 'development' ]
+  environments:
+    - development
 
   pd-meta:
-    run: {}
+    run:
+      tags-scm-sh: "g_f='XXX\\|FIXME\\|TODO';git ls-files|while read f;do grep -n $g_f $f|grep -v 'task.*ignore'|sed 's#^#'\"$f\"'#';done" # tasks:ignore
     init: ""
     test: "make test"
     check: ":vchk make"
