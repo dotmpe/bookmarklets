@@ -13,13 +13,18 @@ addons:
       - moreutils
       - tidy
 
+#pre_install:
+#  - . ./tools/ci/init.sh
+
 install:
   - . ./tools/ci/install.sh
 
-before_script: []
+#before_script:
+#  - . ./tools/ci/check.sh
 
 script:
   - . ./tools/ci/build.sh
+#  - . ./tools/ci/test.sh
 
 env:
   global:
