@@ -81,4 +81,4 @@ test "$(basename $0)" = "install-dependencies.sh" && {
   done
 } || printf ""
 
-# Id: bookmarklet/0.1.0 install-dependencies.sh
+# Id: bookmarklet/0.1.1-dev install-dependencies.sh

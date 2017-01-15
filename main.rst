@@ -2,7 +2,7 @@ Bookmarklets
 ============
 :created: 2008-10-07
 :updated: 2017-01-15
-:version: 0.1.0
+:version: 0.1.1-dev
 :package: ChangeLog_
 
   .. image:: https://coveralls.io/repos/dotmpe/bookmarklets/badge.png
