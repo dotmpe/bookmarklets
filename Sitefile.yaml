@@ -1,44 +1,83 @@
 #!/usr/bin/env sitefile
 sitefile: 0.0.3-dev
+port: 2007
 routes:
-    '': 'redir:main'
-    main: 'rst2html:main'
-    'minuscul-us': 'rst2html:minuscul-us'
-    'source-chart': 'rst2html:source-chart.mpe'
-    'dlcs-post': 'rst2html:dlcs-post'
-    'toggle-style': 'rst2html:toggle-style'
-    'bugnmenot-bopup': 'rst2html:bugnmenot-bopup'
-    'web-archive': 'rst2html:web-archive'
+  '': 'redir:main'
 
-    'google-detect-language': 'rst2html:google-detect-language'
-    'google-translate': 'rst2html:google-translate'
-    'ijs': 'rst2html:ijs'
+  # TODO $name: 'du:**.rst'
+  #'%.html': du:*.rst
+  _du_rst': du:*.rst
+  media/script/dhtml.js: coffee:dhtml.coffee
+  media/style/docutils.bm.css: static:docutils.bm.css
+  minuscul-us,screenshot.png: static:minuscul-us,screenshot.png
+  minuscul-us.1.js: static:minuscul-us.1.js
+  source-chart.css: static:source-chart.css
 
-    'mpe-toggle_width': 'rst2html:mpe-toggle_width'
-    'outline': 'rst2html:outline'
-    'popup': 'rst2html:popup'
-    'rscript': 'rst2html:rscript'
-    'same-domain-policy': 'rst2html:same-domain-policy'
-    'source-chart.mpe': 'rst2html:source-chart.mpe'
-    'toggle-style': 'rst2html:toggle-style'
-    'web-archive': 'rst2html:web-archive'
+  core/name/auto-complete: core.autocomplete:#
+  core: core.routes:#
 
-    'minuscul-us,screenshot': 'rst2html:minuscul-us,screenshot'
+  app: 'static:{app,sitefile:lib/sitefile/client}'
 
-    'minuscul-us,screenshot.png': 'static:minuscul-us,screenshot.png'
-    'minuscul-us.1.js': 'static:minuscul-us.1.js'
+  app/rjs-sf-v0.json: rjs.config:paths=$ref:sitefile:cdn.json#/js/http/packages;baseUrl=/app;main=cs!sf-v0
+  # The JSON is wrapped in a script to initialize RequireJS
+  app/rjs-sf-v0.js: rjs.main:app/rjs-sf-v0.json
+  # Finally a specific router is wired to display a pug template with all of the
+  # above.
+  app/v0: pug:sitefile-client:sf-v0.pug#
 
-    'source-chart.css': 'static:source-chart.css'
+  # Look for installed package in PWD and Sitefile dir
+  npm/packages/: 'static:{,sitefile:}node_modules/'
+
+  # Some HTTP redirect handlers configured on JSON mappings
+  vendor/:package.:format: http.vendor:cdn.json
 
 
+options:
+  global:
+    du:
+      link_stylesheets: true
+      flags:
+      - "--no-toc-backlinks"
+      scripts:
+        "$ref": '#/defaults/scripts'
+      stylesheets:
+        #"$ref": '#/defaults/stylesheets'
+        - url: vendor/bootstrap.css
+        - url: vendor/bootstrap-theme.css
+        - url: media/style/docutils.bm.css
+    rst2html:
+      "$ref": '#/options/global/du'
+    markdown:
+      pug:
+        merge:
+          scripts:
+            "$ref": '#/defaults/scripts'
+          stylesheets:
+            "$ref": '#/defaults/stylesheets'
 
-#_name1: 'static:*.{js,png}'
+  local:
+    'app/v0':
+      merge:
+        $ref: '#/defaults/app/v0'
 
-# TODO
-#    $name: 'du:**.rst'
 
-defs:
+defaults:
+  scripts:
+    - vendor/jquery.js
+    - vendor/coffee-script.js
+    - media/script/dhtml.js
   stylesheets:
-  - 'docutils.bm.css'
-
+    - href: vendor/bootstrap.css
+    - href: media/style/docutils.bm.css
+      path: docutils.bm.css
+  app:
+    v0:
+      stylesheets:
+        $ref: '#/defaults/stylesheets'
+      scripts:
+        - /vendor/jquery.js
+      clients:
+        - type: require-js
+          href: vendor/require.js
+          main: app/rjs-sf-v0.js
 

@@ -20,7 +20,10 @@
 }
 
 body {
-	background:darkgrey;
+	background: darkgrey;
+}
+body > * {
+	background: #eee;
 }
 body:before {
 	content:"BODY#"attr(id)"."attr(class);

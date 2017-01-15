@@ -20,7 +20,7 @@ Some JavaScript bookmarklets originally created for Gecko browsers (FF,Mozilla,.
 `minuscul-us <./minuscul-us.rst>`_
    Search for anchors with ID in the document.
 
-`source chart <./source-chart.rst>`_
+`source chart <./source-chart.mpe.rst>`_
    View structure of document blocks and inlines.
    Adds a stylesheet to the page you are currently viewing.
 
