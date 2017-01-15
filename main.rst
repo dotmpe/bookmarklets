@@ -1,5 +1,9 @@
 Bookmarklets
 ============
+:created: 2008-10-07
+:updated: 2017-01-10
+:version: 0.1.0-dev
+
 Some JavaScript bookmarklets created for Gecko browsers (FF,Mozilla,...).
 
 `minuscul-us <./minuscul-us>`_

@@ -13,4 +13,4 @@
    `minuscul.us`_
 
 .. _Epiphany: http://www.gnome.org/projects/epiphany/
-.. _minuscul.us: ./minuscul-us   
+.. _minuscul.us: ./minuscul-us.rst

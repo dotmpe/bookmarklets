@@ -60,12 +60,13 @@ install_mkdoc()
   echo "Installing mkdoc ($MKDOC_BRANCH)"
   (
     cd $SRC_PREFIX
-    git clone https://github.com/dotmpe/mkdoc.git
+    test -e mkdoc ||
+      git clone https://github.com/dotmpe/mkdoc.git
     cd mkdoc
     git checkout $MKDOC_BRANCH
     ./configure $PREFIX && ./install.sh
   )
-  rm Makefile
+  rm Makefile || printf ""
   ln -s $PREFIX/share/mkdoc/Mkdoc-full.mk Makefile
 }
 
@@ -73,7 +74,7 @@ install_mkdoc()
 
 main_entry()
 {
-  test -n "$1" || set -- 'all'
+  test -n "$1" || set -- all
 
   case "$1" in all|project|git )
       git --version >/dev/null || {
@@ -86,14 +87,15 @@ main_entry()
     ;; esac
 
   case "$1" in all|mkdoc)
-      install_mkdoc || return $?
+      test -e Makefile \
+        || install_mkdoc || return $?
     ;; esac
 
   echo "OK. All pre-requisites for '$1' checked"
 }
 
 test "$(basename $0)" = "install-dependencies.sh" && {
-  test -n "$1" || set -- 'all'
+  test -n "$1" || set -- all
   while test -n "$1"
   do
     main_entry "$1" || exit $?
