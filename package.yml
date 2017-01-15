@@ -1,0 +1,15 @@
+# git-versioning main: bookmarklet
+
+- type: application/x-project-mpe
+  main: bookmarklet
+  name: bookmarklet
+  version: 0.1.0-dev # bookmarklet
+  environments: [ 'development' ]
+
+  pd-meta:
+    run: {}
+    init: ""
+    test: "make test"
+    check: ":vchk make"
+    build: "make all build"
+
