@@ -3,6 +3,16 @@ Bookmarklets
 :created: 2008-10-07
 :updated: 2017-01-10
 :version: 0.1.0-dev
+:package: ChangeLog_
+
+  .. image:: https://coveralls.io/repos/dotmpe/bookmarklets/badge.png
+    :target: https://coveralls.io/r/dotmpe/bookmarklets
+    :alt: Coverage
+
+  .. image:: https://secure.travis-ci.org/dotmpe/bookmarklets.png
+    :target: https://travis-ci.org/dotmpe/bookmarklets
+    :alt: Build
+
 
 Some JavaScript bookmarklets originally created for Gecko browsers (FF,Mozilla,...).
 
@@ -27,7 +37,7 @@ Some JavaScript bookmarklets originally created for Gecko browsers (FF,Mozilla,.
    Search the Web Archive for the current URL.
 
 
----
+----
 
 
 - `google-detect-language <google-detect-language.rst>`_
@@ -40,3 +50,4 @@ Some JavaScript bookmarklets originally created for Gecko browsers (FF,Mozilla,.
 
 .. - `mpe-toggle_width.rst <mpe-toggle_width>`_
 
+.. _ChangeLog: ChangeLog.rst
