@@ -14,13 +14,12 @@ addons:
       - tidy
 
 install:
-  - PREFIX=$DEP_PREFIX ./install-dependencies.sh all
-  - cpanm -h
-  - cpanm --install URI::Escape
+  - . ./tools/ci/install.sh
 
 before_script: []
 
-script: make
+script:
+  - . ./tools/ci/build.sh
 
 env:
   global:
@@ -39,5 +38,4 @@ branches:
 notifications:
   email:
     on_success: never
-
 
