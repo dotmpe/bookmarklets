@@ -41,7 +41,7 @@ options:
       scripts:
         "$ref": '#/defaults/scripts'
       stylesheets:
-        #"$ref": '#/defaults/stylesheets'
+        # FIXME: "$ref": '#/defaults/stylesheets'
         - url: vendor/bootstrap.css
         - url: vendor/bootstrap-theme.css
         - url: media/style/docutils.bm.css

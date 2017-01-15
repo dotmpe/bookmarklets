@@ -1,7 +1,7 @@
 Bookmarklets
 ============
 :created: 2008-10-07
-:updated: 2017-01-01
+:updated: 2017-01-15
 :version: 0.1.0
 :package: ChangeLog_
 

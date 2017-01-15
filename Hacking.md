@@ -6,23 +6,26 @@ on. Testing, packaging, publishing.
 
 
 # Roadmap
-## 0.1
-- Since its an old repo fix a working build, and then move on a minor version.
-
+## 0.2
+## 0.1.1
 ## Dev
-- Nothing specific at the moment. But need to add scan for tags.
+- Nothing specific at the moment.
+
 
 # Tasks and Bugs
+
 
 # Project Tooling
 
 - Std. Package/Travis/GIT setup but nothing automatic but build and testing.
 
-- Maybe setup git pages for project, ie. serve with Jekyll.
-
-- TODO: review Sitefile setup, would want to test at Travis.
+- Test bookmarklets at Travis? 
+- Maybe setup GH pages for project, ie. serve with Jekyll.
+- Could fairly easily setup Sitefile test at Travis.
+  Bookmarklets was one of the earier test repos for sitefile.
+  Still has some specific wishlists, see
   ```
-  Sitefile.yaml37:# TODO
+  Sitefile.yaml:7:# TODO $name: 'du:**.rst'
   ```
 
 - Key build artefact is currently KEYWORDS. See about some setup for
@@ -45,7 +48,6 @@ on. Testing, packaging, publishing.
 
   Rules.mk166:	@# XXX: rule gets always executed? $(ll) file_target "$@" "Symlinking because" "$^"
   ```
-
 
 ## Known Issues
 

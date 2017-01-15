@@ -44,3 +44,4 @@ notifications:
   email:
     on_success: never
 
+# Id: bookmarklet/0.1.0 .travis.yml

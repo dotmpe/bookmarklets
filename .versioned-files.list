@@ -1,3 +1,5 @@
 main.rst
 ReadMe.rst
 package.yml
+install-dependencies.sh
+.travis.yml

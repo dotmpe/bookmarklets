@@ -81,4 +81,4 @@ test "$(basename $0)" = "install-dependencies.sh" && {
   done
 } || printf ""
 
-# Id: mkdoc/0.0.2-test+20150804-0404 install-dependencies.sh
+# Id: bookmarklet/0.1.0 install-dependencies.sh

@@ -1,2 +1,6 @@
 .htaccess
 .build
+
+# clean
+KEYWORDS
+*.src
