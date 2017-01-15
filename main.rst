@@ -4,7 +4,8 @@ Bookmarklets
 :updated: 2017-01-10
 :version: 0.1.0-dev
 
-Some JavaScript bookmarklets created for Gecko browsers (FF,Mozilla,...).
+Some JavaScript bookmarklets originally created for Gecko browsers (FF,Mozilla,...).
+
 
 `minuscul-us <./minuscul-us.rst>`_
    Search for anchors with ID in the document.
