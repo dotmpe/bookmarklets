@@ -41,7 +41,9 @@ DMK_$d              += $(RST_SRC_$d:$/%.rst=$(BUILD_$d)%.include.mk)
 TRGT_$d             += \
 				$(XHT_$d) $(SYMLINK_$d) \
 				$(SCRIPTLETS_$d:%=$(BUILD_$d)%.bm.rst) \
-				$d/.htaccess 
+				$(BUILD_$d)dir.tab \
+				$(BUILD_$d)dir.yaml $/dir.yaml \
+				$/.htaccess 
 
 
 ## Set to globals
@@ -190,7 +192,20 @@ $(BUILD_$d)%.bm.uriref: $/%.js
 	@$(build-bm)
 	@$(ll) file_ok $@ "Done, run because" "$?"
 
+$(BUILD_$d)dir.tab: $/Rules.mk $(SRC)
+	@for x in .build/*.bm.uriref;do \
+		echo $$(basename $$x .bm.uriref) $$(cat $$x);done > $@
+	@$(ll) file_ok $@ "Done, run because" "$?"
 
+$(BUILD_$d)dir.yaml: $/Rules.mk $(SRC)
+	@{ echo "names:"; for x in .build/*.bm.uriref;do \
+		echo "  $$(basename $$x .bm.uriref): ";\
+		echo "    base: \"$$(cat $$x)\"";done ; } > $@
+	@$(ll) file_ok $@ "Done, run because" "$?"
+
+$/dir.yaml: $(BUILD_$d)dir.yaml
+	cp $< $@
+	@$(ll) file_ok $@ "Done, run because" "$?"
 
 ## Debug
 #$(info BM_JS_SRC_$d, $(BM_JS_SRC_$d))
