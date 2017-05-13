@@ -11,6 +11,6 @@ Popup.
 
 .. _google-detect-language.latest.js: google-detect-language.latest.js
 .. FIXME @MK_BUILD/google-detect-language.bm.rst
-.. include:: .build/google-detect-language.bm.rst
+.. include:: .build/google-detect-language.1.bm.rst
 
 

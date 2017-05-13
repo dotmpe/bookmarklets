@@ -15,5 +15,5 @@ XXX: does not detect language of source or choose preferred output language.
 
 .. _google-translate.latest.js: google-translate.latest.js
 .. FIXME: @MK_BUILDgoogle-translate.bm.rst
-.. include:: .build/google-translate.bm.rst
+.. include:: .build/google-translate.1.bm.rst
 

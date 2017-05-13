@@ -1,8 +1,12 @@
+
 body {
-    font-size: 100%;
     width: 47em;
     margin: 12pt auto;
-    font-size: 8pt;
+    /*
+    font-size: 250%;
+    font-size: 150%;
+    font-size: 12pt;
+     * */
     line-height: 10pt
     text-align: left;
 }
@@ -14,7 +18,9 @@ body {
     font-family: monospace;
     font-variant: normal;
     font-weight: 900;
-    font-size: 36pt;
+  /*
+    font-size: 3.6em;
+    */
     line-height: 36pt;
     padding: 0;
     margin: 0pt 0 12pt 0;
@@ -31,13 +37,17 @@ body {
     margin: 4pt 0;
 }
 .document h1 {
-    font-size: 18pt;
+  /*
+    font-size: 1.2em;
+    */
     font-variant: small-caps;
     line-height: 18pt;
     margin: 18pt 0 9pt 0;
 }
 .document p {
-    font-size: 8pt;
+  /*
+  font-size: 0.8em;
+  */
     line-height: 10pt;
     margin: 0 0 5pt 0;
 }
@@ -47,8 +57,11 @@ body {
 }
 
 .document img {
-    border: none;
-    max-width: 35em;
+  border: none;
+  max-width: 35em;
 }
 .document .figure img {
+}
+.document pre.literal-block {
+  white-space: pre-line;
 }

@@ -31,6 +31,7 @@ routes:
   # Some HTTP redirect handlers configured on JSON mappings
   vendor/:package.:format: http.vendor:cdn.json
 
+  build: static:.build/
 
 options:
   global:

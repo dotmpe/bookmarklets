@@ -3,5 +3,11 @@
 
 'Interactive' JavaScript interpreter.
 
+Raw listing
+  .. include:: .build/ijs.1.bm.uriref
+     :literal:
+
+
+
 .. FIXME: @MK_BUILDijs.1.bm.rst
-.. include:: .build/ijs.bm.rst
+.. include:: .build/ijs.1.bm.rst

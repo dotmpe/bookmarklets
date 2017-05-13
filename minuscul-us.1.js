@@ -3,22 +3,22 @@
  * A bookmark aid for HTML pages that displays all fragments identifiers.
  *
  * Copyright (c) 2006 Berend van Berkum <berend : dotmpe : com>
- * 
- * Finds all fragments in a document. Make them visible and display a 
+ *
+ * Finds all fragments in a document. Make them visible and display a
  * floating select list in the top-right corner. Clicking the
  * bookmarklet again toggles the visibility of the 'floater'.
  *
  * Version 0.1
  * Created for the Gecko engine, tested with Gecko 1.7
- * 
+ *
  * License: MIT (use, copy, modify, merge, publish, distribute, sublicense,
- * and/or sell but leave the above copyright. Thanks). 
+ * and/or sell but leave the above copyright. Thanks).
  * See: http://www.opensource.org/licenses/mit-license
  *
  * For more information and the compressed, single-line bookmarklet
- * of this code: 
+ * of this code:
  * http://dotmpe.com/project/javascript/bookmarklet/minusculus
- * 
+ *
  */
 
 E = function(s){return document.createElement(s)};
@@ -32,25 +32,25 @@ if (fr) {fr.style.visibility=fr.style.visibility=='hidden'?'visible':'hidden';re
 
 /* Common style rules */
 style = 'background-color:whitesmoke;opacity:.90;border:1px solid silver;color:darkslategray;';
-	
-/* Split current fragment identifier from URL if it's there */	
+
+/* Split current fragment identifier from URL if it's there */
 res_uri = document.location.href;
-if (res_uri.indexOf('#')) { 
+if (res_uri.indexOf('#')) {
 	u = res_uri.split('#');
 	res_uri = u[0];
 	cur_frag = u[1];
 }
 else cur_frag = null;
-			
+
 /* Get a list of all anchors with a name or id and make them clickable (add href) */
 A = G('a');
 fs = [];
-for(var x=0;A[x];x++){	
+for(var x=0;A[x];x++){
 
 	ID = (A[x].id != '') ? A[x].id : null;
 	if (!ID)
 		ID = (A[x].name != '') ? A[x].name : null;
-		
+
 	if (!ID)
 		continue;
 
@@ -60,7 +60,7 @@ for(var x=0;A[x];x++){
 	frag_id.setAttribute('style', 'color:cornflowerblue;margin:.3em;font-size:.7em;');
 	frag_id.appendChild(T('#'+ID));
 	A[x].appendChild(frag_id);
-	
+
 	fs.push(ID);
 }
 /* Abort if needed */
@@ -73,14 +73,14 @@ st = E('select');
 for (var x in fs) {
 	o = opt.cloneNode(opt);
 	o.appendChild(T(fs[x]));
-	o.setAttribute('value', '#'+fs[x]); 
+	o.setAttribute('value', '#'+fs[x]);
 	if (fs[x] == cur_frag) o.selected = true;
 
 	st.appendChild(o);
 }
 st.onchange = function(evt){document.location.href=evt.target.value};
 
-/* Shameless self-promotion */	
+/* Shameless self-promotion */
 te = E('a');
 te.appendChild(T('minuscul.us'));
 te.href = 'http://dotmpe.com/project/javascript/bookmarklet/minuscul-us';

@@ -1,14 +1,14 @@
-//void((function(){
-/*  IJs - 'interactive' javascript
-
-  ijs, a simple javascript console in javascriptlet/bookmarklet form.
-  Enables interactive inspection of window web documents in JavaScript enabled
-  user agents.
-
-  Inspiration:
-  http://mochikit.com/examples/view-source/view-source.html#interpreter/interpreter.js
-*/
-    style="input{width:auto}.console,.itp{font-family:mono;}.ijs{background-color:#dec;opacity:.9;border:.1em solid #888;color:#233;max-width:46em;}.floater{font-size:0.6em;position:fixed;top:.5em;right:.5em;z-index:5;padding:.5em .6em;}";
+/**
+ * IJs - 'interactive' javascript
+ *
+ * ijs, a simple javascript console in javascriptlet/bookmarklet form.
+ * Enables interactive inspection of window web documents in JavaScript enabled
+ * user agents.
+ *
+ * Inspiration:
+ * http://mochikit.com/examples/view-source/view-source.html#interpreter/interpreter.js
+ */
+  style="input{width:auto}.console,.itp{font-family:mono;}.ijs{background-color:#dec;opacity:.9;border:.1em solid #888;color:#233;max-width:46em;}.floater{font-size:0.6em;position:fixed;top:.5em;right:.5em;z-index:5;padding:.5em .6em;}";
 	E=function(s){return document.createElement(s)};
 	T=function(s){return document.createTextNode(s)};
 	G=function(s){return document.getElementsByTagName(s)};
@@ -103,7 +103,7 @@
         itp.onkeydown=_kh;
         grab(ijs,itp);
 //        itp.focus();
-        
+
         ijs.itp=itp;
         body=G('body')[0];
         put(body,ijs);

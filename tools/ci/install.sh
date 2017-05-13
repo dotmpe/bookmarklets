@@ -2,7 +2,13 @@
 
 set -e
 
-PREFIX=$DEP_PREFIX ./install-dependencies.sh all
+(
+export PREFIX=$HOME/.local SRC_PREFIX=$HOME/build
+./install-dependencies.sh all
+)
+
+cpan App::cpanminus
+
 cpanm -h
 cpanm --install URI::Escape
 

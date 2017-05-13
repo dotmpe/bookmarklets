@@ -9,10 +9,14 @@
   environments:
     - development
 
+  scripts:
+    init:
+    - . ./tools/ci/install.sh
+    build: "make all build"
+
   pd-meta:
     run:
       tags-scm-sh: "g_f='XXX\\|FIXME\\|TODO';git ls-files|while read f;do grep -n $g_f $f|grep -v 'task.*ignore'|sed 's#^#'\"$f\"'#';done" # tasks:ignore
-    init: ""
     test: "make test"
     check: ":vchk make"
     build: "make all build"
