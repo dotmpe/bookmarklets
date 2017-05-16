@@ -1,4 +1,6 @@
 
+group: deprecated
+
 language: perl
 
 perl:
