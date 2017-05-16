@@ -10,8 +10,8 @@ export PREFIX=$HOME/.local SRC_PREFIX=$HOME/build
 
 #(echo y;echo o conf prerequisites_policy follow;echo o conf commit)|cpan
 
-
-cpan App::cpanminus
+# --quiet
+#cpan App::cpanminus
 
 cpanm -h
 cpanm --install URI::Escape

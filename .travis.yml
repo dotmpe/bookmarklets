@@ -1,6 +1,11 @@
 
+<<<<<<< HEAD
 group: deprecated-2017Q1
 #sudo: false
+=======
+group: deprecated
+
+>>>>>>> master
 language: perl
 
 perl:
