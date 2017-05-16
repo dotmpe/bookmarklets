@@ -1,4 +1,6 @@
 
+# group: deprecated-2017Q1
+sudo: false
 language: perl
 
 perl:
