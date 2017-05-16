@@ -198,8 +198,9 @@ $(BUILD_$d)dir.tab: $/Rules.mk $(SRC)
 	@$(ll) file_ok $@ "Done, run because" "$?"
 
 $(BUILD_$d)dir.yaml: $/Rules.mk $(SRC)
-	@{ echo "names:"; for x in .build/*.bm.uriref;do \
+	@{ echo "icon: folder-open";echo "names:"; for x in .build/*.bm.uriref;do \
 		echo "  $$(basename $$x .bm.uriref): ";\
+		echo "    icon: cog ";\
 		echo "    base: \"$$(cat $$x)\"";done ; } > $@
 	@$(ll) file_ok $@ "Done, run because" "$?"
 
